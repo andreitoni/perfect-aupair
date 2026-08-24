@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>You are invited to Perfect AuPair</title>
+  </head>
+  <body style="margin:0;padding:0;background:#f2f4f7;color:#25302d;font-family:Arial,Helvetica,sans-serif;">
+    <div style="display:none;max-height:0;overflow:hidden;opacity:0;">
+      Accept your invitation to Perfect AuPair.
+    </div>
+
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;background:#f2f4f7;">
+      <tr>
+        <td align="center" style="padding:28px 12px;">
+          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="width:100%;max-width:600px;border-collapse:collapse;">
+            <tr>
+              <td style="padding:0 0 14px;">
+                <table role="presentation" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+                  <tr>
+                    <td width="58" style="vertical-align:middle;">
+                      <img
+                        src="https://perfectaupair.example/brand/perfect-aupair-logo-email.png"
+                        width="58"
+                        height="58"
+                        alt="Perfect AuPair"
+                        style="display:block;width:58px;height:58px;border:0;border-radius:999px;"
+                      />
+                    </td>
+                    <td style="padding-left:12px;vertical-align:middle;">
+                      <div style="font-size:20px;line-height:24px;font-weight:900;color:#172426;">Perfect AuPair</div>
+                      <div style="margin-top:2px;font-size:12px;line-height:17px;font-weight:700;color:#6f8793;">Au pair and host family matching</div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td style="border-radius:28px;background:#ffffff;padding:28px;box-shadow:0 12px 32px rgba(38,63,69,0.08);border:1px solid #dce5ea;">
+                <p style="margin:0 0 16px;font-size:13px;line-height:20px;color:#6f8793;font-weight:800;letter-spacing:.08em;text-transform:uppercase;">Invitation</p>
+                <h1 style="margin:0;font-size:30px;line-height:36px;color:#172426;font-weight:900;">You are invited to Perfect AuPair</h1>
+                <p style="margin:18px 0 0;font-size:16px;line-height:26px;color:#52666f;font-weight:700;">Use the button below to accept your invitation and continue setting up your account.</p>
+                <table role="presentation" cellspacing="0" cellpadding="0" style="border-collapse:collapse;margin-top:24px;">
+                  <tr>
+                    <td style="border-radius:999px;background:#16879e;">
+                      <a
+                        href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&amp;type=invite"
+                        style="display:inline-block;padding:14px 24px;border-radius:999px;color:#ffffff;text-decoration:none;font-size:15px;line-height:18px;font-weight:800;"
+                      >
+                        Continue
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+                <p style="margin:24px 0 0;font-size:13px;line-height:20px;color:#6f8793;font-weight:600;">If you did not request this email, you can ignore it.</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

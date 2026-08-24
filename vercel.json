@@ -1,0 +1,49 @@
+{
+  "regions": ["dub1"],
+  "crons": [
+    {
+      "path": "/api/maintenance/cleanup-expired-stories",
+      "schedule": "15 3 * * *"
+    },
+    {
+      "path": "/api/maintenance/cleanup-retained-message-photos",
+      "schedule": "35 3 * * *"
+    },
+    {
+      "path": "/api/maintenance/delete-scheduled-accounts",
+      "schedule": "55 3 * * *"
+    },
+    {
+      "path": "/api/maintenance/roll-profile-availability",
+      "schedule": "5 0 * * *"
+    },
+    {
+      "path": "/api/maintenance/send-profile-completion-reminders",
+      "schedule": "17 4 * * *"
+    },
+    {
+      "path": "/api/maintenance/send-message-digests?window=asia",
+      "schedule": "17 1 * * *"
+    },
+    {
+      "path": "/api/maintenance/send-message-digests?window=eu-summer",
+      "schedule": "17 6 * * *"
+    },
+    {
+      "path": "/api/maintenance/send-message-digests?window=eu-early",
+      "schedule": "17 7 * * *"
+    },
+    {
+      "path": "/api/maintenance/send-message-digests?window=eu-winter",
+      "schedule": "17 8 * * *"
+    },
+    {
+      "path": "/api/maintenance/send-message-digests?window=us-summer",
+      "schedule": "17 12 * * *"
+    },
+    {
+      "path": "/api/maintenance/send-message-digests?window=us-winter",
+      "schedule": "17 13 * * *"
+    }
+  ]
+}

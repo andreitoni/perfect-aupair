@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-label="Verified profile badge">
+  <defs>
+    <linearGradient id="bg" x1="80" x2="560" y1="40" y2="320" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff9e8"/>
+      <stop offset="1" stop-color="#f5df98"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="190" x2="450" y1="70" y2="300" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#f8d879"/>
+      <stop offset="1" stop-color="#b67a05"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" rx="46" fill="url(#bg)"/>
+  <circle cx="320" cy="155" r="84" fill="#fff6dc" stroke="#d7ad35" stroke-width="10"/>
+  <path d="M320 50l19 23 29-9 9 29 29 9-9 29 23 19-23 19 9 29-29 9-9 29-29-9-19 23-19-23-29 9-9-29-29-9 9-29-23-19 23-19-9-29 29-9 9-29 29 9z" fill="url(#gold)"/>
+  <path d="M282 153l25 25 55-57" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="18"/>
+  <text x="320" y="285" fill="#25302d" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="800" text-anchor="middle">Verified profile</text>
+</svg>

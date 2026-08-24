@@ -1,0 +1,78 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+!.env.example
+!.env.backup.local.example
+!.env.test.local.example
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+playwright-report/
+test-results/
+.lighthouseci/
+.dmarc-monitor/
+.supabase-backup/
+.env.dmarc.local
+
+# Local editor settings
+/.idea/
+
+# Private operational material (kept outside the public repository)
+/AGENTS.md
+/DEPLOYMENT.md
+/QA_MANUAL_TEST_CHECKLIST.md
+/QA_MANUAL_TEST_REPORT.md
+/docs/
+/marketing/
+/.github/workflows/synthetic-monitor.yml
+/.github/workflows/lighthouse.yml
+/lighthouserc.cjs
+/lighthouserc.mobile.cjs
+/scripts/lighthouse-preflight.mjs
+/scripts/dmarc-monitor.mjs
+/scripts/dmarc-wake-watcher.mjs
+/scripts/install-dmarc-monitor-launchd.mjs
+/scripts/install-supabase-backup-launchd.mjs
+/scripts/supabase-local-backup.mjs
+/scripts/synthetic-monitor.mjs
+/.env.backup.local.example
+/public/social/
+/public/demo-pics/
+/public/brand/perfect-aupair-aupair-search-preview-*.jpg
+/public/brand/perfect-aupair-family-search-preview-*.jpg
+/public/brand/perfect-aupair-feed-preview-*.jpg

@@ -1,0 +1,52 @@
+{
+  "name": "aupair-platform",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@11.7.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint",
+    "typecheck": "next typegen && tsc --noEmit --incremental --project tsconfig.app.json",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:smoke": "playwright test tests/e2e/smoke.spec.ts tests/e2e/seo-aeo.spec.ts",
+    "test:smoke:production": "NEXT_PUBLIC_SITE_URL=https://perfectaupair.example NEXT_PUBLIC_SUPPORT_EMAIL=support@example.invalid NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:54321 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=ci-placeholder-publishable-key SUPABASE_SERVICE_ROLE_KEY=ci-placeholder-service-role-key NEXT_PUBLIC_SENTRY_DSN= SENTRY_DSN= SENTRY_AUTH_TOKEN= SENTRY_ORG= SENTRY_PROJECT= MAINTENANCE_MODE=false NEXT_PUBLIC_MAINTENANCE_MODE=false PLAYWRIGHT_BASE_URL=http://127.0.0.1:3100 PLAYWRIGHT_WEB_SERVER_COMMAND='pnpm exec next start -p 3100' PLAYWRIGHT_REUSE_EXISTING_SERVER=false playwright test tests/e2e/smoke.spec.ts tests/e2e/seo-aeo.spec.ts",
+    "verify:quick": "pnpm typecheck && pnpm lint",
+    "verify": "pnpm verify:quick",
+    "verify:full": "NEXT_PUBLIC_SITE_URL=https://perfectaupair.example NEXT_PUBLIC_SUPPORT_EMAIL=support@example.invalid NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:54321 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=ci-placeholder-publishable-key SUPABASE_SERVICE_ROLE_KEY=ci-placeholder-service-role-key NEXT_PUBLIC_SENTRY_DSN= SENTRY_DSN= SENTRY_AUTH_TOKEN= SENTRY_ORG= SENTRY_PROJECT= MAINTENANCE_MODE=false NEXT_PUBLIC_MAINTENANCE_MODE=false pnpm build && pnpm test:smoke:production",
+    "verify:db": "supabase db reset && pnpm verify:full",
+    "test:regressions": "playwright test tests/e2e/current-regressions.spec.ts --workers=1",
+    "test:launch-abuse": "playwright test tests/e2e/launch-abuse-hardening.spec.ts --workers=1",
+    "test:moderation-races": "playwright test tests/e2e/manual-moderation-races.spec.ts --workers=1",
+    "test:public-catalog": "SECURITY_RATE_LIMIT_HASH_SECRET=perfect-aupair-public-catalog-playwright PLAYWRIGHT_BASE_URL=http://localhost:3110 PLAYWRIGHT_WEB_SERVER_COMMAND='pnpm dev --port 3110' PLAYWRIGHT_REUSE_EXISTING_SERVER=false playwright test tests/e2e/public-catalog.spec.ts --workers=1",
+    "test:onboarding": "node scripts/run-onboarding-tests.mjs",
+    "test:story-cleanup": "playwright test tests/e2e/story-cleanup.spec.ts",
+    "test:uploads": "playwright test tests/e2e/image-uploads.spec.ts --project=chromium --project=android-chrome --project=samsung-internet-emulation --project=ios-safari --project=iphone-chrome-emulation --project=iphone-firefox-emulation --project=ipad-safari --project=desktop-safari --project=firefox --workers=1"
+  },
+  "dependencies": {
+    "@sentry/nextjs": "^10.70.0",
+    "@supabase/ssr": "^0.12.3",
+    "@supabase/supabase-js": "^2.110.7",
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
+    "mediabunny": "1.50.8",
+    "next": "16.3.2",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "react-easy-crop": "6.2.2",
+    "tus-js-client": "^4.3.1",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.60.0",
+    "@tailwindcss/postcss": "^4.3.0",
+    "@types/node": "^20.19.41",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "16.3.2",
+    "tailwindcss": "^4.3.0"
+  }
+}

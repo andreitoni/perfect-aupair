@@ -1,0 +1,126 @@
+name: Release Gate
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "43 2 * * *"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release-gate-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  launch-regressions:
+    name: Clean DB, security, privacy, and upload regressions
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          run_install: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - name: Setup Supabase CLI
+        uses: supabase/setup-cli@v3
+        with:
+          version: 2.102.0
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Audit production dependencies
+        run: pnpm audit --prod --audit-level=high
+
+      - name: Install Chromium
+        run: pnpm exec playwright install --with-deps chromium
+
+      - name: Start local Supabase
+        run: supabase start
+
+      - name: Export local Supabase environment
+        shell: bash
+        run: |
+          set -euo pipefail
+          eval "$(supabase status -o env)"
+          public_key="${PUBLISHABLE_KEY:-${ANON_KEY:-}}"
+          service_key="${SECRET_KEY:-${SERVICE_ROLE_KEY:-}}"
+          test -n "${API_URL:-}"
+          test -n "$public_key"
+          test -n "$service_key"
+          {
+            echo "NEXT_PUBLIC_SUPABASE_URL=$API_URL"
+            echo "NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=$public_key"
+            echo "SUPABASE_SERVICE_ROLE_KEY=$service_key"
+          } >> "$GITHUB_ENV"
+
+      - name: Verify clean migrations, build, and smoke routes
+        run: pnpm verify:db
+
+      - name: Verify lint and application types
+        run: pnpm verify
+
+      - name: Run launch security controls
+        run: pnpm exec playwright test tests/e2e/launch-security-hardening.spec.ts --workers=1
+
+      - name: Run launch abuse and cost controls
+        run: pnpm test:launch-abuse
+
+      - name: Run manual moderation race controls
+        run: pnpm test:moderation-races
+
+      - name: Run release metadata and enumeration controls
+        run: pnpm exec playwright test tests/e2e/release-hardening.spec.ts --workers=1
+
+      - name: Run bounded public catalog controls
+        run: pnpm test:public-catalog
+
+      - name: Run deletion, analytics, and blocking controls
+        run: >-
+          pnpm exec playwright test
+          tests/e2e/account-deletion-rpc.spec.ts
+          tests/e2e/analytics-session-replay.spec.ts
+          tests/e2e/profile-blocks-fail-closed.spec.ts
+          --workers=1
+
+      - name: Run broad regressions
+        run: pnpm exec playwright test tests/e2e/current-regressions.spec.ts --workers=1
+
+      - name: Run onboarding controls
+        run: pnpm test:onboarding
+
+      - name: Run upload controls
+        run: pnpm exec playwright test tests/e2e/image-uploads.spec.ts --workers=1
+
+      - name: Run story view and cleanup controls
+        run: >-
+          pnpm exec playwright test
+          tests/e2e/story-views.spec.ts
+          tests/e2e/story-cleanup.spec.ts
+          --workers=1
+
+      - name: Upload failure evidence
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: release-gate-playwright-${{ github.run_id }}
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - name: Stop local Supabase
+        if: always()
+        run: supabase stop --no-backup

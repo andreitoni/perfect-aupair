@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light only" />
+    <meta name="supported-color-schemes" content="light" />
+    <title>Reset your Perfect AuPair password</title>
+    <style>
+      :root {
+        color-scheme: light only;
+        supported-color-schemes: light;
+      }
+
+      .pa-body,
+      .pa-card,
+      .pa-header {
+        background-color: #ffffff !important;
+        color: #25302d !important;
+      }
+
+      .pa-page {
+        background-color: #fbfaf7 !important;
+      }
+
+      .pa-muted {
+        color: #6c7470 !important;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        body,
+        .pa-page {
+          background-color: #fbfaf7 !important;
+        }
+
+        .pa-card,
+        .pa-header,
+        .pa-body {
+          background-color: #ffffff !important;
+          color: #25302d !important;
+        }
+
+        .pa-muted {
+          color: #6c7470 !important;
+        }
+      }
+    </style>
+  </head>
+  <body class="pa-page" style="margin: 0; padding: 0; background: #fbfaf7; color: #25302d; font-family: Arial, Helvetica, sans-serif;">
+    <div style="display: none; max-height: 0; overflow: hidden; opacity: 0;">
+      Reset your Perfect AuPair password.
+    </div>
+
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" class="pa-page" style="background: #fbfaf7; padding: 32px 16px;">
+      <tr>
+        <td align="center">
+          <table role="presentation" width="100%" cellspacing="0" cellpadding="0" class="pa-card" style="max-width: 620px; overflow: hidden; border-radius: 28px; background: #ffffff; border: 1px solid #eee8df; box-shadow: 0 18px 54px rgba(37, 48, 45, 0.08); color: #25302d;">
+            <tr>
+              <td class="pa-header" style="padding: 28px 32px; background: #ffffff; color: #25302d; border-bottom: 1px solid #eee8df;">
+                <table role="presentation" width="100%" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="72" style="vertical-align: middle;">
+                      <img
+                        src="https://perfectaupair.example/brand/perfect-aupair-logo-email.png"
+                        width="72"
+                        height="72"
+                        alt="Perfect AuPair"
+                        style="display: block; width: 72px; height: 72px; border: 0; border-radius: 999px; outline: none; text-decoration: none;"
+                      />
+                    </td>
+                    <td style="padding-left: 16px; vertical-align: middle;">
+                      <div style="font-size: 22px; line-height: 1.15; font-weight: 900; letter-spacing: -0.02em; color: #25302d !important;">
+                        Perfect AuPair
+                      </div>
+                      <div class="pa-muted" style="margin-top: 4px; font-size: 13px; line-height: 1.4; font-weight: 700; color: #6c7470 !important;">
+                        Au pair and host family matching
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="pa-body" style="padding: 34px 32px 10px; background: #ffffff; color: #25302d;">
+                <div style="font-size: 12px; line-height: 1.4; font-weight: 900; letter-spacing: 0.16em; text-transform: uppercase; color: #6f8793 !important;">
+                  Password reset
+                </div>
+
+                <h1 style="margin: 12px 0 0; font-size: 30px; line-height: 1.08; font-weight: 900; letter-spacing: -0.04em; color: #25302d !important;">
+                  Reset your password
+                </h1>
+
+                <p class="pa-muted" style="margin: 16px 0 0; font-size: 16px; line-height: 1.65; font-weight: 600; color: #6c7470 !important;">
+                  Use the button below to choose a new password for your Perfect AuPair account.
+                </p>
+              </td>
+            </tr>
+
+            <tr>
+              <td align="center" class="pa-body" style="padding: 24px 32px 8px; background: #ffffff;">
+                <table role="presentation" cellspacing="0" cellpadding="0" width="100%" style="max-width: 360px;">
+                  <tr>
+                    <td align="center" style="border-radius: 999px; background: #25302d; box-shadow: 0 12px 30px rgba(37,48,45,.18);">
+                      <a
+                        href="{{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&type=recovery"
+                        style="display: block; color: #ffffff !important; text-decoration: none; border-radius: 999px; padding: 16px 24px; font-size: 15px; line-height: 1.2; font-weight: 900; text-align: center;"
+                      >
+                        Reset password
+                      </a>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="pa-body" style="padding: 18px 32px 34px; background: #ffffff;">
+                <p class="pa-muted" style="margin: 0; font-size: 13px; line-height: 1.6; font-weight: 600; color: #6c7470 !important;">
+                  If the button does not work, copy this link into your browser:
+                </p>
+                <p class="pa-muted" style="margin: 8px 0 0; font-size: 12px; line-height: 1.6; word-break: break-all; color: #6c7470 !important;">
+                  {{ .SiteURL }}/auth/confirm?token_hash={{ .TokenHash }}&amp;type=recovery
+                </p>
+                <p class="pa-muted" style="margin: 18px 0 0; font-size: 13px; line-height: 1.6; font-weight: 600; color: #6c7470 !important;">
+                  If you did not request a password reset, you can ignore this email.
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

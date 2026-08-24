@@ -1,0 +1,2 @@
+-- Historical data-only maintenance is intentionally omitted from the public
+-- source tree. This placeholder preserves the applied migration version.
