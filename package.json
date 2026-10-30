@@ -26,7 +26,7 @@
     "test:uploads": "playwright test tests/e2e/image-uploads.spec.ts --project=chromium --project=android-chrome --project=samsung-internet-emulation --project=ios-safari --project=iphone-chrome-emulation --project=iphone-firefox-emulation --project=ipad-safari --project=desktop-safari --project=firefox --workers=1"
   },
   "dependencies": {
-    "@sentry/nextjs": "^10.70.0",
+    "@sentry/nextjs": "^10.75.2",
     "@supabase/ssr": "^0.12.3",
     "@supabase/supabase-js": "^2.110.7",
     "@vercel/analytics": "^2.0.1",
